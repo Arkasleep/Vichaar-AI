@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vichar AI - Voice Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBg: '#FFFBEB',
+                        brandDark: '#78350F',
+                        brandAccent: '#D97706',
+                    },
+                    fontFamily: {
+                        serif: ['"DM Serif Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brandBg text-slate-800 font-sans antialiased">
+
+    <!-- Header Navigation -->
+    <header class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <span class="text-3xl font-serif font-bold text-slate-800 tracking-tight">Vichar AI</span>
+            <span class="text-xs bg-amber-100 text-amber-900 font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Voice Suite</span>
+        </div>
+        <nav class="hidden md:flex space-x-8 font-medium text-slate-600 text-sm">
+            <a href="index.html" class="hover:text-sky-600 transition">Home</a>
+            <a href="games.html" class="hover:text-emerald-600 transition">Cognitive Games</a>
+            <a href="CareGiver.html" class="hover:text-purple-600 transition">CareGiver Dashboard</a>
+            <a href="voice.html" class="text-amber-700 font-bold">Voice Assistant</a>
+        </nav>
+        <button id="onlineStatus" onclick="toggleOfflineMode()" class="bg-amber-100 text-amber-900 border border-amber-200 text-xs px-4 py-2 rounded-full font-semibold">
+            ● Online Mode
+        </button>
+    </header>
+
+    <!-- Header Section -->
+    <section class="max-w-7xl mx-auto px-6 py-4">
+        <div class="mb-6 space-y-1">
+            <span class="text-xs font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-3 py-1 rounded-full">Audio Assistance</span>
+            <h1 class="text-4xl font-serif font-bold text-slate-900 pt-2">Voice Assistant & Reminiscence Audio</h1>
+            <p class="text-slate-600 text-sm">Interactive voice companion designed for hands-free audio cues, regional prompts, and reassuring dialogue.</p>
+        </div>
+    </section>
+
+    <!-- Voice Arena -->
+    <section class="max-w-4xl mx-auto px-6 mb-12">
+        <div class="bg-white rounded-3xl p-6 md:p-10 border border-amber-100 shadow-xl space-y-8 text-center">
+            
+            <div class="flex justify-center">
+                <div id="micRing" class="w-28 h-28 bg-amber-100 rounded-full flex items-center justify-center text-5xl shadow-inner transition-all duration-300">
+                    🎙️
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <h2 id="voiceStatusText" class="text-2xl font-serif font-bold text-slate-900">Tap below to speak with Vichar Voice</h2>
+                <p id="voiceSubtitle" class="text-sm text-slate-500">Supports English & regional prompts for memory guidance.</p>
+            </div>
+
+            <!-- Voice Controls -->
+            <div class="flex flex-wrap justify-center gap-4 pt-2">
+                <button id="startListenBtn" onclick="toggleVoiceListening()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full shadow-md transition text-sm">
+                    🎙️ Start Listening
+                </button>
+                <button onclick="speakVoicePrompt('Namaste! Today is a calm, peaceful day. Remember to take your medication and stay hydrated.')" class="bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 font-bold py-3 px-6 rounded-full transition text-sm">
+                    🔊 Daily Morning Prompt
+                </button>
+            </div>
+
+            <!-- Transcript Output Box -->
+            <div class="bg-amber-50/60 rounded-2xl p-6 border border-amber-100 text-left space-y-2">
+                <p class="text-xs font-bold uppercase tracking-widest text-amber-800">Voice Recognition Output</p>
+                <p id="transcriptText" class="text-slate-700 font-medium italic text-base">"Listening output will appear here..."</p>
+            </div>
+
+            <!-- Quick Voice Prompts List -->
+            <div class="pt-4 text-left border-t border-slate-100 space-y-3">
+                <h3 class="font-serif font-bold text-slate-800 text-lg">Quick Reminiscence Prompts</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <button onclick="speakVoicePrompt('Let us talk about your hometown and family traditions in the North East.')" class="p-3 bg-slate-50 hover:bg-amber-50 rounded-xl border border-slate-200 text-left text-xs font-medium text-slate-700 transition">
+                        🗣️ Family & Hometown Memories
+                    </button>
+                    <button onclick="speakVoicePrompt('It is time for your afternoon tea break. Relax and enjoy a warm cup.')" class="p-3 bg-slate-50 hover:bg-amber-50 rounded-xl border border-slate-200 text-left text-xs font-medium text-slate-700 transition">
+                        🍵 Afternoon Tea Break Cue
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-200 my-8 py-8 text-center text-xs text-slate-400">
+        Vichar AI • Smart India Hackathon (SIH) • North Eastern Region Dementia Care
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

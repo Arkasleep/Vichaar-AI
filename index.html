@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vichaar AI - Home</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+    .container { max-width: 800px; margin: 30px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    h1 { color: #2c3e50; text-align: center; }
+    .lang-card { border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; margin: 20px 0; background: #fafafa; }
+    select, button { width: 100%; padding: 12px; font-size: 16px; margin-top: 10px; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box; }
+    button { background-color: #27ae60; color: white; border: none; font-weight: bold; cursor: pointer; }
+    button:hover { background-color: #219150; }
+    .nav-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 25px; }
+    .nav-btn { text-align: center; text-decoration: none; background: #2980b9; color: white; padding: 14px; border-radius: 6px; font-weight: bold; }
+    .checkbox-group { margin-top: 15px; display: flex; align-items: center; gap: 10px; }
+    .tts-btn { background: #8e44ad; color: white; margin-top: 10px; width: auto; padding: 8px 15px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 id="app-title" data-i18n="app_title">🧠 Vichaar AI</h1>
+    <p id="welcome-text" style="text-align: center;" data-i18n="welcome_text">Welcome! Select your preferred language:</p>
+
+    <div class="lang-card">
+      <label for="languageSelect"><strong data-i18n="select_lang_label">🌐 Select Language:</strong></label>
+      <select id="languageSelect" onchange="previewLanguage()">
+        <option value="Meitei">Meitei (Manipuri) / ꯃꯩꯇꯩꯂꯣꯟ</option>
+        <option value="Assamese">Assamese / অসমীয়া</option>
+        <option value="Bodo">Bodo / बर'</option>
+        <option value="Mizo">Mizo / Mizo ṭawng</option>
+        <option value="Khasi">Khasi / Ka Ktien Khasi</option>
+        <option value="English" selected>English</option>
+        <option value="Hindi">Hindi / हिंदी</option>
+      </select>
+
+      <button class="tts-btn" onclick="speakCurrentPageText('welcome-text')">🔊 Listen (AI Voice)</button>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="savePreference" />
+        <label for="savePreference" data-i18n="save_pref_label">Save language setting for future sessions</label>
+      </div>
+
+      <button onclick="saveLanguageSetting()" data-i18n="save_btn">Save & Proceed</button>
+    </div>
+
+    <div class="nav-links">
+      <a href="reminders.html" class="nav-btn" style="background:#e67e22;" id="btn-reminders" data-i18n="btn_reminders">🔔 Daily Reminders & Routine</a>
+      <a href="games.html" class="nav-btn" id="btn-games" data-i18n="btn_games">🎮 Play Cognitive Games</a>
+      <a href="caregiver.html" class="nav-btn" style="background:#8e44ad;" id="btn-dashboard" data-i18n="btn_dashboard">📊 Caregiver Dashboard</a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

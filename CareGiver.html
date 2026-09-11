@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vichaar AI - Caregiver Dashboard</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; margin: 0; padding: 20px; }
+    .container { max-width: 950px; margin: auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    h2 { color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+    th { background-color: #edf2f7; color: #2d3748; }
+    .ai-card { background: #f0fff4; border-left: 6px solid #38a169; padding: 20px; margin-top: 30px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <h2 data-i18n="dash_header">📊 Patient Analytics & Caregiver Dashboard</h2>
+      <div>
+        <a href="reminders.html" style="text-decoration:none; background:#feebc8; padding:8px 12px; border-radius:6px; color:#c05621; font-weight:bold; margin-right:8px;" data-i18n="nav_reminders">🔔 Reminders</a>
+        <a href="games.html" style="text-decoration:none; background:#edf2f7; padding:8px 12px; border-radius:6px; color:#4a5568; font-weight:bold;" data-i18n="nav_games">Games Directory</a>
+      </div>
+    </div>
+
+    <h3 data-i18n="table_title">Logged Game Statistics</h3>
+    <table>
+      <thead>
+        <tr>
+          <th data-i18n="th_game">Game Name</th>
+          <th data-i18n="th_sessions">Sessions Completed</th>
+          <th data-i18n="th_latency">Avg Latency / Time</th>
+          <th data-i18n="th_acc">Accuracy Rate</th>
+        </tr>
+      </thead>
+      <tbody id="stats-table">
+        <!-- Dynamically filled by app.js -->
+      </tbody>
+    </table>
+
+    <div class="ai-card">
+      <h3 style="margin-top:0; color:#276749;" data-i18n="ai_title">🤖 Vichaar AI Progress Engine</h3>
+      <p id="ai-prediction-summary">Gathering patient metrics...</p>
+      <hr style="border:0; border-top:1px solid #cbd5e0; margin:15px 0;"/>
+      <p><strong>Clinical Recommendation:</strong> <span id="ai-recommendation">Calculating...</span></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

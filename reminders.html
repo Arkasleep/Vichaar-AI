@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vichaar AI - Audio-Visual Cues & Reminders</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fffdf5; margin: 0; padding: 20px; color: #333; }
+    .container { max-width: 900px; margin: auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    .header-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 12px; }
+    .section-title { color: #d35400; border-bottom: 2px solid #f39c12; padding-bottom: 5px; margin-top: 30px; }
+    
+    .cue-card { border: 2px solid #e67e22; background: #fff9f3; border-radius: 10px; padding: 20px; margin: 15px 0; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+    .cue-card.urgent { border-color: #e74c3c; background: #fdf2e9; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); } }
+    
+    .cue-info { flex-grow: 1; }
+    .cue-time { font-size: 1.2em; font-weight: bold; color: #e67e22; }
+    .cue-desc { font-size: 1.1em; font-weight: bold; margin: 5px 0; }
+    
+    .btn-action { background: #27ae60; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-size: 1em; font-weight: bold; cursor: pointer; }
+    .btn-speak { background: #8e44ad; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; margin-right: 5px; }
+
+    .faces-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+    .face-card { border: 2px solid #3498db; border-radius: 10px; padding: 15px; text-align: center; background: #f0f8ff; }
+    .face-avatar { width: 90px; height: 90px; border-radius: 50%; background: #3498db; color: white; display: flex; align-items: center; justify-content: center; font-size: 2.5em; margin: 0 auto 10px auto; border: 3px solid #2980b9; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-bar">
+      <h2 data-i18n="reminders_header">🔔 Audio-Visual Cues & Routine Reminders</h2>
+      <div>
+        <a href="index.html" style="text-decoration:none; color:#2980b9; font-weight:bold; margin-right:15px;" data-i18n="nav_home">⚙️ Home</a>
+        <a href="games.html" style="text-decoration:none; color:#27ae60; font-weight:bold;" data-i18n="nav_games">🎮 Games</a>
+      </div>
+    </div>
+
+    <p id="active-lang-badge" style="color: #7f8c8d; font-weight: bold; margin-top: 15px;">Language: Loading...</p>
+
+    <h3 class="section-title" data-i18n="sec_meds">💊 Daily Medication Schedule (Audio-Visual)</h3>
+    
+    <div class="cue-card urgent" id="med-card-1">
+      <div class="cue-info">
+        <div class="cue-time">⏰ 08:00 AM</div>
+        <div class="cue-desc" id="med-desc-1" data-i18n="med_1_text">Dementia Morning Medicine: Donepezil (1 Tablet with Water)</div>
+        <small style="color:#7f8c8d;" data-i18n="med_1_sub">Take after breakfast to maintain memory clarity.</small>
+      </div>
+      <div>
+        <button class="btn-speak" onclick="speakCurrentPageText('med-desc-1')" title="AI Speech">🔊 Voice</button>
+        <button class="btn-action" onclick="markTaken('med-card-1')" data-i18n="btn_mark_taken">Take Pill ✅</button>
+      </div>
+    </div>
+
+    <div class="cue-card" id="med-card-2">
+      <div class="cue-info">
+        <div class="cue-time">⏰ 08:00 PM</div>
+        <div class="cue-desc" id="med-desc-2" data-i18n="med_2_text">Night Medicine: Memantine (1 Tablet)</div>
+        <small style="color:#7f8c8d;" data-i18n="med_2_sub">Take before bedtime with a glass of warm milk/water.</small>
+      </div>
+      <div>
+        <button class="btn-speak" onclick="speakCurrentPageText('med-desc-2')">🔊 Voice</button>
+        <button class="btn-action" onclick="markTaken('med-card-2')" data-i18n="btn_mark_taken">Take Pill ✅</button>
+      </div>
+    </div>
+
+    <h3 class="section-title" data-i18n="sec_family">👨‍👩‍👧‍👦 Family Faces & Essential Contacts</h3>
+    <div class="faces-grid">
+      <div class="face-card">
+        <div class="face-avatar">👩</div>
+        <h4 style="margin:5px 0;" id="face-name-1">Priya (Daughter)</h4>
+        <p style="font-size:0.9em; color:#555;" id="face-desc-1" data-i18n="face_1_desc">Visits every morning. Primary caregiver.</p>
+        <button class="btn-speak" style="width:100%; margin-top:5px;" onclick="speakText('This is Priya, your daughter. She visits you every morning.')">🔊 Introduce</button>
+      </div>
+
+      <div class="face-card">
+        <div class="face-avatar">👨</div>
+        <h4 style="margin:5px 0;" id="face-name-2">Rahul (Son)</h4>
+        <p style="font-size:0.9em; color:#555;" id="face-desc-2" data-i18n="face_2_desc">Calls every evening at 7:00 PM.</p>
+        <button class="btn-speak" style="width:100%; margin-top:5px;" onclick="speakText('This is Rahul, your son. He calls you every evening.')">🔊 Introduce</button>
+      </div>
+    </div>
+
+    <h3 class="section-title" data-i18n="sec_routine">🌅 Today's Routine Schedule</h3>
+    <div class="cue-card">
+      <div class="cue-info">
+        <div class="cue-time">⏰ 05:00 PM</div>
+        <div class="cue-desc" id="routine-1-text" data-i18n="routine_1_text">Evening Garden Walk & Light Physical Movement</div>
+      </div>
+      <button class="btn-speak" onclick="speakCurrentPageText('routine-1-text')">🔊 Voice</button>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

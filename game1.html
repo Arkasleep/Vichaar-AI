@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vichaar AI - Game 1</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef5f9; padding: 20px; }
+    .game-box { max-width: 650px; margin: 30px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .prompt-box { background: #f0f7ff; border-left: 5px solid #3498db; padding: 20px; border-radius: 4px; margin: 20px 0; font-size: 1.2em; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+    .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+    .opt-btn { background: #edf2f7; border: 2px solid #cbd5e0; padding: 15px; border-radius: 8px; font-size: 1.1em; cursor: pointer; font-weight: bold; }
+    .opt-btn:hover { background: #e2e8f0; border-color: #a0aec0; }
+    .feedback { font-weight: bold; margin-top: 15px; text-align: center; font-size: 1.1em; min-height: 24px; }
+    .btn-next { background: #27ae60; color: white; border: none; width: 100%; padding: 12px; border-radius: 6px; font-weight: bold; margin-top: 20px; cursor: pointer; display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="game-box">
+    <a href="games.html" style="text-decoration:none; color:#3498db; font-weight:bold;" data-i18n="back_games">← Back to Games Directory</a>
+    <h2 data-i18n="g1_title">🎵 Game 1: Finish the Song / Saying</h2>
+    <p data-i18n="g1_instr">Complete the well-known phrase by selecting or typing the missing word.</p>
+
+    <div class="prompt-box">
+      <span id="phrase-prompt">Loading prompt...</span>
+      <button style="background:#8e44ad; color:white; border:none; padding:8px 12px; border-radius:4px; cursor:pointer;" onclick="speakCurrentPageText('phrase-prompt')">🔊 Read Prompt</button>
+    </div>
+
+    <div class="options-grid" id="options-container"></div>
+
+    <div style="margin-top:20px;">
+      <label for="manualAnswer" data-i18n="label_type">Or type answer:</label>
+      <input type="text" id="manualAnswer" placeholder="Type word here..." style="width:100%; padding:10px; margin-top:5px; box-sizing:border-box;" />
+      <button onclick="checkManualAnswer()" style="margin-top:8px; background:#3498db; color:white; border:none; padding:8px 15px; border-radius:4px; cursor:pointer;" data-i18n="btn_submit">Submit Typed Answer</button>
+    </div>
+
+    <div class="feedback" id="feedback-msg"></div>
+    <button class="btn-next" id="next-btn" onclick="nextQuestion()" data-i18n="btn_next">Next Phrase →</button>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    window.onload = function() {
+      initGame1Page();
+    };
+  </script>
+</body>
+</html>
